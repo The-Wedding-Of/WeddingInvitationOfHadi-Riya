@@ -45,7 +45,10 @@
   <div id="site">
     <!-- NAVIGASI -->
     <nav class="navbar">
-      <a href="#home" class="nav-brand script">Hadi & Riya</a>
+      <a href="#home" class="nav-brand script">Hadi</a>
+            <a href="#home" class="nav-brand script">&</a>
+      <a href="#home" class="nav-brand script">Riya</a>
+
       <div class="nav-links">
         <a href="#couple">Mempelai</a>
         <a href="#event">Acara</a>
@@ -60,7 +63,10 @@
       <div class="hero-content">
         <p class="eyebrow reveal">A CELEBRATION OF LOVE</p>
         <img class="hero-photo reveal delay-1" src="cover2.jpg" alt="Hadi dan Riya">
-        <h1 class="script hero-names gold-text reveal delay-1">Hadi & Riya</h1>
+        <h1 class="script hero-names gold-text reveal delay-1">Hadi</h1>
+                <h1 class="script hero-names gold-text reveal delay-1">&</h1>
+        <h1 class="script hero-names gold-text reveal delay-1">Riya</h1>
+
         <p class="eyebrow reveal delay-2">UNDANGAN PEMBERKATAN PERNIKAHAN</p>
         <span class="gold-divider"></span>
         <p class="date-line reveal delay-2">SABTU, 12 DESEMBER 2026</p>
@@ -108,8 +114,8 @@
             <h3>Hadianto Kurniawan Tan</h3>
             <p class="parent-text">Putra dari</p>
             <p class="parent-text">Bapak Tan Tjoen Hwa</p>
-            <p class="parent-text"> & </p>
-            <p class="parent-text">ibu Tjhin Tjhiu Loe</p>
+            <p class="parent-text">&</p>
+            <p class="parent-text">Ibu Tjhin Tjhiu Loe</p>
           </article>
 
           <div class="ampersand script gold-text reveal">&</div>
@@ -125,8 +131,7 @@
             <p class="parent-text">Ibu Nuralam Rangkuti</p>
           </article>
         </div>
-        <p class="muted small">
-        </p>
+        <p class="muted small"></p>
       </div>
     </section>
 
@@ -262,8 +267,7 @@
 
         <div class="wishes-list">
           <h3 class="list-title">Ucapan & Doa</h3>
-          <p class="muted small">
-          </p>
+          <p class="muted small"></p>
           <div id="notesContainer"></div>
         </div>
       </div>
@@ -324,6 +328,41 @@
     </footer>
   </div>
 
+  <!-- SCRIPT UTAMA -->
   <script src="script.js"></script>
+
+  <!-- TAMBAHAN: NAMA TAMU OTOMATIS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const paramsTamu = new URLSearchParams(window.location.search);
+      const namaTamu = paramsTamu.get("to");
+
+      if (!namaTamu || !namaTamu.trim()) return;
+
+      const namaBersih = namaTamu.trim().slice(0, 100);
+      const kolomNamaTamu = document.getElementById("guestName");
+      const kolomNamaRSVP = document.getElementById("rsvpName");
+
+      if (kolomNamaTamu) {
+        kolomNamaTamu.value = namaBersih;
+      }
+
+      if (kolomNamaRSVP) {
+        kolomNamaRSVP.value = namaBersih;
+      }
+
+      const tombolBuka = document.getElementById("openButton");
+
+      if (tombolBuka) {
+        tombolBuka.addEventListener("click", function () {
+          if (kolomNamaRSVP && kolomNamaTamu && kolomNamaTamu.value.trim()) {
+            kolomNamaRSVP.value = kolomNamaTamu.value.trim();
+          }
+        });
+      }
+    });
+  </script>
+
 </body>
-</html>
+        </html>
+  
